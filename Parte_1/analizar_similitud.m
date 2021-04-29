@@ -10,10 +10,12 @@ function [resultado_fmf, resultado_iam] = analizar_similitud(video_original, vid
   m_iam=V_iam.Height;
   n_iam=V_iam.Width;
   if m_org == m_fmf && m_org == m_iam && n_org == n_fmf && n_org == n_iam
+    resultado_fmf = 0;
+    resultado_iam = 0;
     for k=1:frames
-      Frame_org_k = readFream(V_original);
-      Frame_fmf_k = readFream(V_fmf);
-      Frame_iam_k = readFream(V_iam);
+      Frame_org_k = readFrame(V_original);
+      Frame_fmf_k = readFrame(V_fmf);
+      Frame_iam_k = readFrame(V_iam);
       resultado_fmf += ssim(Frame_org_k, Frame_fmf_k);
       resultado_iam += ssim(Frame_org_k, Frame_iam_k);
     endfor

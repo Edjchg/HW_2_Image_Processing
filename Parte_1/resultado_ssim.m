@@ -32,5 +32,4 @@ function [resultado_fmf, resultado_iam] = resultado_ssim(video_original, video_p
     resultado_fmf = 0;
     resultado_iam = 0;
   endif 
->>>>>>> c0ec123b7659e2c3d1a71ee30f49b507b2e20770
 endfunction

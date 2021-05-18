@@ -20,7 +20,7 @@ title('(c) Imagen a Restaurar','FontSize',16)
 a=0.125; b=0.125; 
 M=[a b a;b 0 b;a b a];
 
-A=inpaint(I3,I2, M);
+A=inpaint_p3(I3,I2, M, 0.0001);
 
 A=im2uint8(A);
 subplot(2,2,4)

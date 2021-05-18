@@ -1,8 +1,8 @@
 clc; clear; close all;
 pkg load image
 
-imagen=uint8(imread('monalisa.png'));
-%imagen=imnoise(imagen, "salt & pepper", 0.5);
+imagen=uint8(imread('einstein.jpg'));
+imagen=imnoise(imagen, "salt & pepper", 0.5);
 tic
 B = filtros_mediana_modificada(imagen, 'f');
 t1=toc

@@ -14,12 +14,8 @@ function quitar_ruido_video(video_input, video_output_fmf, video_output_iam)
   Frame_k=uint8(zeros(m,n));
   parfor k=1:5 % Recorriendo los frames del video.
     Frame_k = readFrame(V); % Leyendo el k-ésimo frame del video.
-    tic
     writeVideo(video_result_fmf, filtros_mediana_modificada(Frame_k(:,:,1), 'f')); % Escribiendo en el video de salida el frame procesado con el algoritmo fmf.
-    t1=toc
-    tic
     writeVideo(video_result_iam, filtros_mediana_modificada(Frame_k(:,:,1), 'i')); % Escribiendo en el video de salida el frame procesado con el algoritmo iam.
-    t2=toc
   endparfor
   close(video_result_fmf); % Cerrando el video en RAM, para que toda la informacion sea escrita de forma segura en el disco.
   close(video_result_iam); % Cerrando el video en RAM, para que toda la informacion sea escrita de forma segura en el disco.

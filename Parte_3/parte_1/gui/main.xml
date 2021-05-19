@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[0 589 737 491]" Resize="off" VPosition="center" windowStyle="normal">
+    <GlobalSrc>%
+% The source code writed here will be executed when
+% windows load. Work like 'onLoad' event of other languages.
+%
+</GlobalSrc>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_load_img" Position="[15 405 108 35]" String="Cargar Imagen" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="Button_3" Position="[150 405 108 35]" String="Limpiar" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="Button_4" Position="[600 405 108 35]" String="Guardar Imagen" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor</uiControl>
+    <uiControl class="cmbCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="ComboBox_2" Position="[375 410 99 25]" String="Value A|Value B|Value C" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_3" Position="[285 415 64 16]" String="Label_3" TooltipString=""/>
+</dialog>

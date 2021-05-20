@@ -1,19 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[0 589 737 491]" Resize="off" VPosition="center" windowStyle="normal">
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[0 587 738 493]" Resize="off" VPosition="center" windowStyle="normal">
     <GlobalSrc>%
 % The source code writed here will be executed when
 % windows load. Work like 'onLoad' event of other languages.
 %
-</GlobalSrc>
-    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_load_img" Position="[15 405 108 35]" String="Cargar Imagen" TooltipString="">% This code will be executed when user click the button control.
+
+pkg load image</GlobalSrc>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_load_img" Position="[15 410 108 35]" String="Cargar Imagen" TooltipString="">% This code will be executed when user click the button control.
 % As default, all events are deactivated, to activate must set the
-% propertie 'generateCallback' from the properties editor</uiControl>
-    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="Button_3" Position="[150 405 108 35]" String="Limpiar" TooltipString="">% This code will be executed when user click the button control.
+% propertie 'generateCallback' from the properties editor
+
+[file,path]=uigetfile(); %Ventana de dialogo para seleccionar la imagen
+
+%Variable global para la imagen de entrada
+global A;
+
+%Comprueba que el ui consiguio un archivo
+if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
+  text=fullfile(path, file); %Direccion donde se encuentra la imagen
+%Lectura y mostrado de la imagen de entrada
+  A=imread(text);
+  axes(main.img_input)
+  imshow(A)
+%Reseteo de mensajes
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_process,'string','Limpiar');
+  set(main.lbl_output,'string','Imagen Salida');
+endif</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_process" Position="[150 410 108 35]" String="Limpiar" TooltipString="">% This code will be executed when user click the button control.
 % As default, all events are deactivated, to activate must set the
-% propertie 'generateCallback' from the properties editor</uiControl>
-    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="Button_4" Position="[600 405 108 35]" String="Guardar Imagen" TooltipString="">% This code will be executed when user click the button control.
+% propertie 'generateCallback' from the properties editor
+
+%Variable global para la imagen de entrada
+global A;
+global B;
+
+%Comprobacion que existe una imagen
+if sum(size(A))==0
+%Mensaje indicando que no existe la imagen
+  set(main.btn_process,'foregroundcolor',[1.0 0.0 0.0]);
+  set(main.btn_process,'string','¡Cargue Imagen!');
+else
+%Mensaje que indica el inicio del procesamiento
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 1.0]);
+  set(main.btn_process,'string','Procesando...');
+%Desabilitacion de botones para evitar problemas
+  set(main.btn_process,'enable','off');
+  set(main.btn_load_img,'enable','off');
+  set(main.combobox_algo,'enable','off');
+  set(main.btn_save,'enable','off');
+%Se consigue el tipo de filtro seleccionado del combobox
+  option=get(main.combobox_algo,'value');
+%La funcion de filtrado implementado en Octave
+%Se selecciona el algoritmo
+  if option==1
+    B=filt_mediana(A);
+    set(main.lbl_output,'string','Imagen Filtro Mediana');
+  elseif option==2
+    B=fast_med(A);
+    set(main.lbl_output,'string','Imagen Fast Median Filter');
+  elseif option==3
+    B=impr_med(A);
+    set(main.lbl_output,'string','Imagen IAMFA-I');
+  else
+    B=A;
+    set(main.lbl_output,'string','Imagen Entrada: Error');
+  endif
+%Se muestra la imagen en su respectivo campo
+  axes(main.img_output)
+  imshow(B)
+%Mensaje que indica el fin del procesamiento
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_process,'string','Limpiar');
+%Se habilidan los botones
+  set(main.btn_process,'enable','on');
+  set(main.btn_load_img,'enable','on');
+  set(main.combobox_algo,'enable','on');
+  set(main.btn_save,'enable','on');
+endif</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_save" Position="[594 410 114 35]" String="Guardar Imagen" TooltipString="">% This code will be executed when user click the button control.
 % As default, all events are deactivated, to activate must set the
-% propertie 'generateCallback' from the properties editor</uiControl>
-    <uiControl class="cmbCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="ComboBox_2" Position="[375 410 99 25]" String="Value A|Value B|Value C" TooltipString=""/>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_3" Position="[285 415 64 16]" String="Label_3" TooltipString=""/>
+% propertie 'generateCallback' from the properties editor
+
+%Variable global de imagen de salida
+global B;
+
+%Consigue el archivo de salida
+[file,path]=uiputfile({&quot;*.gif;*.png;*.jpg&quot;, &quot;Supported Picture Formats&quot;});
+
+%Comprueba que se selecciono un archivo
+if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
+  text=fullfile(path,file); %Direccion donde se encuentra la imagen
+%Escribe la imagen de salida
+  imwrite(B,text);
+endif
+</uiControl>
+    <uiControl class="cmbCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="combobox_algo" Position="[420 415 134 25]" String="Mediana|Fast Median Filter Approximation|IAMFA-I" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_3" Position="[285 420 119 18]" String="Algoritmo utilizado:" TooltipString=""/>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_input" Position="[15 70 331 308]"/>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_output" Position="[375 70 331 308]"/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="16" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_4" Position="[115 30 156 29]" String="Imagen Entrada" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="16" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="lbl_output" Position="[375 30 331 29]" String="Imagen Salida" TooltipString=""/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_help" Position="[670 0 52 29]" String="Ayuda" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor
+
+</uiControl>
 </dialog>

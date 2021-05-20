@@ -11,11 +11,12 @@ function quitar_ruido_video(video_input, video_output_fmf, video_output_iam)
   n=V.Width; % Extrayendo la cantidad de columnas que posee el video.
   video_result_fmf = VideoWriter(video_output_fmf); % Creando la instancia en RAM del video de salida con el algoritmo fmf.
   video_result_iam = VideoWriter(video_output_iam); % Creando la instancia en RAM del video de salida con el algoritmo iam.
-  for k=1:5 % Recorriendo los frames del video.
+  Frame_k=uint8(zeros(m,n));
+  parfor k=1:5 % Recorriendo los frames del video.
     Frame_k = readFrame(V); % Leyendo el k-ésimo frame del video.
-    writeVideo(video_result_fmf, filtros_mediana_modificada(Frame_k, 'f')); % Escribiendo en el video de salida el frame procesado con el algoritmo fmf.
-    writeVideo(video_result_iam, filtros_mediana_modificada(Frame_k, 'i')); % Escribiendo en el video de salida el frame procesado con el algoritmo iam.
-  endfor
+    writeVideo(video_result_fmf, filtros_mediana_modificada(Frame_k(:,:,1), 'f')); % Escribiendo en el video de salida el frame procesado con el algoritmo fmf.
+    writeVideo(video_result_iam, filtros_mediana_modificada(Frame_k(:,:,1), 'i')); % Escribiendo en el video de salida el frame procesado con el algoritmo iam.
+  endparfor
   close(video_result_fmf); % Cerrando el video en RAM, para que toda la informacion sea escrita de forma segura en el disco.
   close(video_result_iam); % Cerrando el video en RAM, para que toda la informacion sea escrita de forma segura en el disco.
 endfunction

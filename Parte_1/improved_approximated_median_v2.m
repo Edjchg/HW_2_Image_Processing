@@ -4,46 +4,47 @@ function imagen_limpia = improved_approximated_median_v2(I)
   A=0;B=0;C=0;
   for z=1:k
     for i=1:m
-      if 1<i && i<m
-        A=mid_value_decision_median(sort(I(i-1:i+1,1,z)));% Tomando el nuevo pixel de la columna A.
-        B=mid_value_decision_median(sort(I(i-1:i+1,2,z)));% Tomando el nuevo pixel de la columna B.
-      elseif i==1
+      i_left=(1<i);i_right=(i<m);i_init=(i==1);i_end=(i==m);
+      if i_left && i_right
+        A=mid_value_decision_median(I(i-1:i+1,1,z),3);% Tomando el nuevo pixel de la columna A.
+        B=mid_value_decision_median(I(i-1:i+1,2,z),3);% Tomando el nuevo pixel de la columna B.
+      elseif i_init
         %A no existe para este pixel.
-        B=mid_value_decision_median(sort(I(i:i+1,1,z)));% Tomando el nuevo pixel de la columna B.
-      elseif i==m
-        B=mid_value_decision_median(sort(I(i-1:i,1,z)));
+        B=mid_value_decision_median(I(i:i+1,1,z),2);% Tomando el nuevo pixel de la columna B.
+      elseif i_end
+        B=mid_value_decision_median(I(i-1:i,1,z),2);
       endif
       for j=1:n
-        if 1<i && i<m && 1<j && j<n %Revisando cuando no esta en los bordes que es la mayoria del tiempo.
-          C=mid_value_decision_median(sort(I(i-1:i+1,j+1,z))); %Tomando el nuevo píxel de la columna C.
-          imagen_limpia(i,j,z) = mid_value_decision_median(sort([A B C])); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
-        elseif i==1 && j==1 %Revisando la esquina superior izquierda.
-          C=mid_value_decision_median(sort(I(i:i+1,j+1,z))); %Tomando el nuevo píxel de la columna C.
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([B C])); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
-        elseif i==1 && 1<j && j<n %Revisando el borde superior.
-          C=mid_value_decision_median(sort(I(i:i+1,j+1,z))); %Tomando el nuevo píxel de la columna C.
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([A B C])); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
-        elseif i==1 && j==n %Revisando la esquina superior derecha.
+        j_left=(1<j);j_right=(j<n);j_init=(j==1);j_end=(j==n);
+        if i_left && i_right && j_left && j_right %Revisando cuando no esta en los bordes que es la mayoria del tiempo.
+          C=mid_value_decision_median(I(i-1:i+1,j+1,z),3); %Tomando el nuevo píxel de la columna C.
+          imagen_limpia(i,j,z) = mid_value_decision_median([A B C],3); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
+        elseif i_init && j_init %Revisando la esquina superior izquierda.
+          C=mid_value_decision_median(I(i:i+1,j+1,z),2); %Tomando el nuevo píxel de la columna C.
+          imagen_limpia(i,j,z)=mid_value_decision_median([B C],2); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
+        elseif i_init && j_left && j_right %Revisando el borde superior.
+          C=mid_value_decision_median(I(i:i+1,j+1,z),2); %Tomando el nuevo píxel de la columna C.
+          imagen_limpia(i,j,z)=mid_value_decision_median(sort([A B C]),3); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
+        elseif i_init && j_end %Revisando la esquina superior derecha.
           %No existe columna C.
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([A B])); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
-        elseif 1<i && i<m && j==1% Revisando borde izquierdo.
+          imagen_limpia(i,j,z)=mid_value_decision_median([A B],2); % Tomando el nuevo pixel de los tres mejores pixeles antes tomados y guardandolo en la nueva imagen.
+        elseif i_left && i_right && j_init% Revisando borde izquierdo.
           % No existe columna A.
-          B=mid_value_decision_median(sort(I(i-1:i+1,j,z)));
-          C=mid_value_decision_median(sort(I(i-1:i+1,j+1,z)));
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([B C]));
-        elseif 1<i && i<m && j==n %Revisando borde derecho.
+          C=mid_value_decision_median(I(i-1:i+1,j+1,z),3);
+          imagen_limpia(i,j,z)=mid_value_decision_median([B C],2);
+        elseif i_left && i_right && j_end %Revisando borde derecho.
           %No hay borde C.
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([A B]));
-        elseif i==m && j==0 %Revisando esquina inferior izquierda.
+          imagen_limpia(i,j,z)=mid_value_decision_median([A B],2);
+        elseif i_end && j_init %Revisando esquina inferior izquierda.
           %No hay A.
-          C=mid_value_decision_median(I(i-1:i,j+1,z));
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([B C]));
-        elseif i==m && j==n %Revisando esquina inferior derecha
+          C=mid_value_decision_median(I(i-1:i,j+1,z),2);
+          imagen_limpia(i,j,z)=mid_value_decision_median([B C],2);
+        elseif i_end && j_end %Revisando esquina inferior derecha
           %No hay C para este pixel
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([A B]));
-        elseif i==m && 1<j && j<n %Revisando el borde inferior
-          C=mid_value_decision_median(I(i-1:i,j+1,z));
-          imagen_limpia(i,j,z)=mid_value_decision_median(sort([A B C]));
+          imagen_limpia(i,j,z)=mid_value_decision_median([A B],2);
+        elseif i_end && j_left && j_right %Revisando el borde inferior
+          C=mid_value_decision_median(I(i-1:i,j+1,z),2);
+          imagen_limpia(i,j,z)=mid_value_decision_median([A B C],3);
         endif
         A=B; % Actualizando el valor de A hacia la columna adyacente que corresponde a B.
         B=C; % Actualizando el valor de B hacia la columna adyacente que corresponde a C.
@@ -51,3 +52,6 @@ function imagen_limpia = improved_approximated_median_v2(I)
     endfor
   endfor
 endfunction
+
+
+%mejorar las condiciones que se repiten.

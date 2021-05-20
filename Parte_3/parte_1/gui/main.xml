@@ -14,6 +14,8 @@ pkg load image</GlobalSrc>
 
 %Variable global para la imagen de entrada
 global A;
+global B;
+B=0;
 
 %Comprueba que el ui consiguio un archivo
 if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
@@ -26,6 +28,8 @@ if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
   set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
   set(main.btn_process,'string','Limpiar');
   set(main.lbl_output,'string','Imagen Salida');
+  set(main.btn_save,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_save,'string','Guardar Imagen');
 endif</uiControl>
     <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_process" Position="[150 410 108 35]" String="Limpiar" TooltipString="">% This code will be executed when user click the button control.
 % As default, all events are deactivated, to activate must set the
@@ -34,6 +38,7 @@ endif</uiControl>
 %Variable global para la imagen de entrada
 global A;
 global B;
+B=0;
 
 %Comprobacion que existe una imagen
 if sum(size(A))==0
@@ -72,6 +77,8 @@ else
 %Mensaje que indica el fin del procesamiento
   set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
   set(main.btn_process,'string','Limpiar');
+  set(main.btn_save,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_save,'string','Guardar Imagen');
 %Se habilidan los botones
   set(main.btn_process,'enable','on');
   set(main.btn_load_img,'enable','on');
@@ -85,14 +92,19 @@ endif</uiControl>
 %Variable global de imagen de salida
 global B;
 
+if sum(size(B))&gt;1
 %Consigue el archivo de salida
-[file,path]=uiputfile({&quot;*.gif;*.png;*.jpg&quot;, &quot;Supported Picture Formats&quot;});
+  [file,path]=uiputfile({&quot;*.gif;*.png;*.jpg&quot;, &quot;Supported Picture Formats&quot;});
 
 %Comprueba que se selecciono un archivo
-if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
-  text=fullfile(path,file); %Direccion donde se encuentra la imagen
+  if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
+    text=fullfile(path,file); %Direccion donde se encuentra la imagen
 %Escribe la imagen de salida
-  imwrite(B,text);
+    imwrite(B,text);
+  endif
+else
+  set(main.btn_save,'foregroundcolor',[1.0 0.0 0.0]);
+  set(main.btn_save,'string','Requiere Imagen');
 endif
 </uiControl>
     <uiControl class="cmbCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="combobox_algo" Position="[420 415 134 25]" String="Mediana|Fast Median Filter Approximation|IAMFA-I" TooltipString=""/>

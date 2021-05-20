@@ -7,7 +7,7 @@ imshow(I1)
 title('Imagen Original')
 %Texto: I2
 I2=imread('mascara.jpg');
-%I2(I2<50)=0;I2(I2>=50)=255; %Convertir imagen a Binaria
+I2(I2<50)=0;I2(I2>=50)=255; %Convertir imagen a Binaria
 subplot(2,2,2)
 imshow(I2)
 title('Region a restaruar ')

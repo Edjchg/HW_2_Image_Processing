@@ -5,9 +5,6 @@
 ##
 ## @end deftypefn
 function wnd = main()
-[_dir, _name, _ext] = fileparts( mfilename('fullpathext') );
-global _parte_1BasePath = strtrunc(_dir, length(_dir) - 4);
-global _parte_1ImgPath = [ strtrunc(_dir, length(_dir) - 4) filesep() 'img'];
   main_def;
   wnd = show_main();
 end

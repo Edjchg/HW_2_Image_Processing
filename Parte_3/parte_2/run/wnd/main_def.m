@@ -132,10 +132,12 @@ else
 %Se consigue la tolerancia de entrada
   tol=str2num(get(main.input,'string'));
 %Se realiza el algoritmo
-  B=zeros(size(A));
-  B(:,:,1)=inpaint(A(:,:,1),M,tol);
-  B(:,:,2)=inpaint(A(:,:,2),M,tol);
-  B(:,:,3)=inpaint(A(:,:,3),M,tol);
+  M(M<50)=0;M(M>=50)=255; %Convertir imagen a Binaria
+  I3=A+M;
+  B=zeros(size(I3));
+  B(:,:,1)=inpaint(I3(:,:,1),M,tol);
+  B(:,:,2)=inpaint(I3(:,:,2),M,tol);
+  B(:,:,3)=inpaint(I3(:,:,3),M,tol);
   B=im2uint8(B);
 %Se muestra la imagen en su respectivo campo
   axes(main.img_output)

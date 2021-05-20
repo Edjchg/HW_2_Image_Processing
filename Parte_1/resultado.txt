@@ -1,0 +1,7 @@
+t1 = 77.988
+t1 = 78.460
+t1 = 78.080
+t1 = 77.423
+ans = Analizando la similitud de los videos video_sin_ruido_alg1.mp4 y video_sin_ruido_alg2.mp4 con su original.
+resultado_fmf = 0.5787
+resultado_iam = 0.4969

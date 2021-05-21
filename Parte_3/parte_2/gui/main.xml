@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[738 391 697 689]" Resize="off" VPosition="center" windowStyle="normal">
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[0 391 697 689]" Resize="off" VPosition="center" windowStyle="normal">
     <GlobalSrc>%
 % The source code writed here will be executed when
 % windows load. Work like 'onLoad' event of other languages.

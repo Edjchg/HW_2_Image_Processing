@@ -19,6 +19,7 @@ title('Region de la Imagen Original a restauar')
 
 a=0.073235; b=0.176765; 
 c=0.125;
+
 a=c;b=c;
 M=[a b a;b 0 b;a b a];
 

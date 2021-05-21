@@ -1,8 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[1 597 751 482]" Resize="off" VPosition="center" windowStyle="normal">
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="main" Position="[738 391 697 689]" Resize="off" VPosition="center" windowStyle="normal">
     <GlobalSrc>%
 % The source code writed here will be executed when
 % windows load. Work like 'onLoad' event of other languages.
 %
-</GlobalSrc>
+
+pkg load image</GlobalSrc>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_help" Position="[600 615 80 28]" String="Ayuda" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor
+
+waitfor(help_dialog().figure)</uiControl>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_input" Position="[15 40 309 284]"/>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_output" Position="[355 40 309 284]"/>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_mask" Position="[15 360 309 284]"/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_4" Position="[82 6 174 26]" String="Imagen a Restaurar" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_5" Position="[410 8 170 26]" String="Imagen Restaurada" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_6" Position="[126 330 75 26]" String="Máscara" TooltipString=""/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_load" Position="[425 360 168 33]" String="Cargar Imagen" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor
+
+[file,path]=uigetfile(); %Ventana de dialogo para seleccionar la imagen
+
+%Variable global para la imagen de entrada
+global A;
+global B;
+B=0;
+
+%Comprueba que el ui consiguio un archivo
+if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
+  text=fullfile(path, file); %Direccion donde se encuentra la imagen
+%Lectura y mostrado de la imagen de entrada
+  A=imread(text);
+  axes(main.img_input)
+  imshow(A)
+%Reseteo de mensajes
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_process,'string','Restaurar');
+  set(main.btn_save,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_save,'string','Guardar Imagen');
+endif</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_mask" Position="[425 415 168 33]" String="Cargar Máscara" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor
+
+[file,path]=uigetfile(); %Ventana de dialogo para seleccionar la imagen
+
+%Variable global para la imagen de entrada
+global M;
+global B;
+B=0;
+
+%Comprueba que el ui consiguio un archivo
+if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
+  text=fullfile(path, file); %Direccion donde se encuentra la imagen
+%Lectura y mostrado de la imagen de entrada
+  M=imread(text);
+  axes(main.img_mask)
+  imshow(M)
+%Reseteo de mensajes
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_process,'string','Restaurar');
+  set(main.btn_save,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_save,'string','Guardar Imagen');
+endif</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_process" Position="[398 525 222 33]" String="Restaurar" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor
+
+%Variable global para la imagen de entrada
+global A;
+global M;
+global B;
+B=0;
+
+%Comprobacion que existe una imagen
+if sum(size(A))==0 &amp;&amp; sum(size(M))==0
+%Mensaje indicando que no existe la imagen
+  set(main.btn_process,'foregroundcolor',[1.0 0.0 0.0]);
+  set(main.btn_process,'string','¡Cargue Imagen o Máscara!');
+else
+%Mensaje que indica el inicio del procesamiento
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 1.0]);
+  set(main.btn_process,'string','Procesando...');
+%Desabilitacion de botones para evitar problemas
+  set(main.btn_process,'enable','off');
+  set(main.btn_load,'enable','off');
+  set(main.btn_mask,'enable','off');
+  set(main.btn_save,'enable','off');
+  set(main.input,'enable','off');
+%Se consigue la tolerancia de entrada
+  tol=str2num(get(main.input,'string'));
+%Se realiza el algoritmo
+  M(M&lt;50)=0;M(M&gt;=50)=255; %Convertir imagen a Binaria
+  I3=A+M;
+  B=zeros(size(I3));
+  B(:,:,1)=inpaint(I3(:,:,1),M,tol);
+  B(:,:,2)=inpaint(I3(:,:,2),M,tol);
+  B(:,:,3)=inpaint(I3(:,:,3),M,tol);
+  B=im2uint8(B);
+%Se muestra la imagen en su respectivo campo
+  axes(main.img_output)
+  imshow(B)
+%Mensaje que indica el fin del procesamiento
+  set(main.btn_process,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_process,'string','Restaurar');
+  set(main.btn_save,'foregroundcolor',[0.0 0.0 0.0]);
+  set(main.btn_save,'string','Guardar Imagen');
+%Se habilidan los botones
+  set(main.btn_process,'enable','on');
+  set(main.btn_load,'enable','on');
+  set(main.btn_mask,'enable','on');
+  set(main.btn_save,'enable','on');
+  set(main.input,'enable','on');
+endif</uiControl>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_7" Position="[451 470 113 19]" String="Tolerancia (tol&gt;0):" TooltipString=""/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_save" Position="[425 580 168 33]" String="Guardar Imagen" TooltipString="">% This code will be executed when user click the button control.
+% As default, all events are deactivated, to activate must set the
+% propertie 'generateCallback' from the properties editor
+
+%Variable global de imagen de salida
+global B;
+
+if sum(size(B))&gt;0
+%Consigue el archivo de salida
+  [file,path]=uiputfile({&quot;*.gif;*.png;*.jpg&quot;, &quot;Supported Picture Formats&quot;});
+
+%Comprueba que se selecciono un archivo
+  if size(file,2)&gt;1 &amp;&amp; size(path,2)&gt;1
+    text=fullfile(path,file); %Direccion donde se encuentra la imagen
+%Escribe la imagen de salida
+    imwrite(B,text);
+  endif
+else
+  set(main.btn_save,'foregroundcolor',[1.0 0.0 0.0]);
+  set(main.btn_save,'string','Requiere Imagen');
+endif</uiControl>
+    <uiControl class="editCtrl" BackgroundColor="[1.000 1.000 1.000]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" Name="input" Position="[478 495 63 22]" String="0.1" TooltipString="">% This code will be executed when the control lost focus and text has 
+% been changed or when press the &quot;enter&quot; key.
+% As default, all events are deactivated, to activate must set the
+% propertie 'have callback' from the properties editor</uiControl>
 </dialog>

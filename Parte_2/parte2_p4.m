@@ -19,13 +19,14 @@ title('Region de la Imagen Original a restauar')
 
 a=0.073235; b=0.176765; 
 c=0.125;
-%a=c;b=c;
+
+a=c;b=c;
 M=[a b a;b 0 b;a b a];
 
 A=zeros(size(I3));
-A(:,:,1)=inpaint_p3(I3(:,:,1),I2, M, 0.0001);
-A(:,:,2)=inpaint_p3(I3(:,:,2),I2, M, 0.0001);
-A(:,:,3)=inpaint_p3(I3(:,:,3),I2, M, 0.0001);
+A(:,:,1)=inpaint(I3(:,:,1),I2, M, 200);
+A(:,:,2)=inpaint(I3(:,:,2),I2, M, 200);
+A(:,:,3)=inpaint(I3(:,:,3),I2, M, 200);
 
 A=im2uint8(A);
 subplot(2,2,4)

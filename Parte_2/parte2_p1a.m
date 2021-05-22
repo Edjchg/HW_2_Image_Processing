@@ -20,9 +20,9 @@ A(:,:,3)=[0 0 0 0;
         
 %Se aplica se condiccion a cada capa de la 
 % matriz A.
-B1=(A(:,:,1)>5);
-B2=(A(:,:,2)<5);
-B3=(A(:,:,3)>=10);
+B1=(A(:,:,1)>5)
+B2=(A(:,:,2)<5)
+B3=(A(:,:,3)>=10)
 
 %Se realiza una interseccion de los 
 %resultados de cada dimencion de A.

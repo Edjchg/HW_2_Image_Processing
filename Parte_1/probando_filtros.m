@@ -1,7 +1,7 @@
 clc; clear; close all;
 pkg load image
 
-imagen1=uint8(imread('cameraman.jpg'));
+imagen1=uint8(imread('peppers.jpg'));
 imagen=imnoise(imagen1, "salt & pepper", 0.30);
 
 tic
@@ -27,5 +27,10 @@ subplot(1,4,4)
 imshow(C)
 title("Imagen con IAMFA-I")
 
-resultado_fmf=ssim(imagen1(:,:,1), B(:,:,1))
-resultado_iam=ssim(imagen1(:,:,1), C(:,:,1))
+resultado_fmf=ssim(imagen1(:,:,1), B)
+resultado_iam=ssim(imagen1(:,:,1), C)
+
+
+
+
+

@@ -3,11 +3,13 @@
 %Function inpaint()
 %@end deftypefn
 
-function Y=inpaint(img,mask,tol=0.1)
+function Y=inpaint(img,mask,tol=0.1,k)
   a=0.073235; 
   b=0.176765; 
   c=0.125;
-  %a=c;b=c;
+  if(k==1)
+	a=c;b=c;
+  endif
   kernel=[a b a;b 0 b;a b a];
 
   A=im2double(img);

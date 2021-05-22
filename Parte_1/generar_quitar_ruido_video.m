@@ -5,15 +5,15 @@ pkg load video
 
 video_original="VIDEO_pequeno.mp4";
 
-video_ruido="video_con_ruido.mp4";
+video_ruido="video_con_ruido_v2.mp4";
 
-video_limpio_fmf="video_sin_ruido_alg1.mp4";
+video_limpio_fmf="video_sin_ruido_alg1_v2.mp4";
 
-video_limpio_iam="video_sin_ruido_alg2.mp4";
+video_limpio_iam="video_sin_ruido_alg2_v2.mp4";
 
 factor_ruido=0.25;
 %frames = 300;
-frames=1;
+frames=77;
 "Generando ruido en el video..."
 generar_ruido_video(video_original, video_ruido, factor_ruido, frames);
 "Quitando el ruido antes generado con el metodo fmf e iam..."

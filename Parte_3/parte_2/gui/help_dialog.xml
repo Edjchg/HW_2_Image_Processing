@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="help_dialog" Position="[0 466 1078 614]" Resize="off" VPosition="center" windowStyle="normal">
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="help_dialog" Position="[0 425 1120 655]" Resize="off" VPosition="center" windowStyle="normal">
     <GlobalSrc>%
 % The source code writed here will be executed when
 % windows load. Work like 'onLoad' event of other languages.
@@ -14,5 +14,5 @@ help_img=imread(text);
 axes(help_dialog.img_help)
 imshow(help_img)
 </GlobalSrc>
-    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_help" Position="[5 5 1052 565]"/>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_help" Position="[5 5 1093 606]"/>
 </dialog>

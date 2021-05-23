@@ -14,9 +14,9 @@ waitfor(help_dialog().figure)</uiControl>
     <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_input" Position="[15 40 309 284]"/>
     <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_output" Position="[355 45 309 284]"/>
     <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img_mask" Position="[15 360 309 284]"/>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_4" Position="[82 6 132 24]" String="Imagen a Restaurar" TooltipString=""/>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_5" Position="[410 8 131 24]" String="Imagen Restaurada" TooltipString=""/>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_6" Position="[126 330 58 24]" String="Máscara" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_4" Position="[82 6 174 26]" String="Imagen a Restaurar" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_5" Position="[410 8 170 26]" String="Imagen Restaurada" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="14" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_6" Position="[126 330 75 26]" String="Máscara" TooltipString=""/>
     <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_load" Position="[425 360 168 33]" String="Cargar Imagen" TooltipString="">% This code will be executed when user click the button control.
 % As default, all events are deactivated, to activate must set the
 % propertie 'generateCallback' from the properties editor
@@ -117,7 +117,7 @@ else
   set(main.btn_save,'enable','on');
   set(main.input,'enable','on');
 endif</uiControl>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_7" Position="[406 470 85 17]" String="Tolerancia (tol&gt;0):" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Comic Sans MS" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_7" Position="[406 470 113 19]" String="Tolerancia (tol&gt;0):" TooltipString=""/>
     <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Comic Sans MS" FontSize="10" FontWeight="bold" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="btn_save" Position="[425 580 168 33]" String="Guardar Imagen" TooltipString="">% This code will be executed when user click the button control.
 % As default, all events are deactivated, to activate must set the
 % propertie 'generateCallback' from the properties editor
@@ -144,5 +144,5 @@ endif</uiControl>
 % As default, all events are deactivated, to activate must set the
 % propertie 'have callback' from the properties editor</uiControl>
     <uiControl class="cmbCtrl" BackgroundColor="[0.937 0.937 0.937]" FontAngle="normal" FontName="Yrsa" FontSize="11" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="op_kernel" Position="[560 495 64 22]" String="a=b|a=/b" TooltipString=""/>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Z003 [UKWN]" FontSize="11" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Kernel" Position="[575 470 35 16]" String="Kernel" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Z003 [UKWN]" FontSize="11" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Kernel" Position="[570 470 47 18]" String="Kernel" TooltipString=""/>
 </dialog>

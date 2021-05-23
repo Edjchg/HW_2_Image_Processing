@@ -26,11 +26,11 @@ graphics_toolkit qt;
 ## @end deftypefn
 function ret = show_help_dialog()
   _scrSize = get(0, "screensize");
-  _xPos = (_scrSize(3) - 1070)/2;
-  _yPos = (_scrSize(4) - 586)/2;
+  _xPos = (_scrSize(3) - 1104)/2;
+  _yPos = (_scrSize(4) - 616)/2;
    help_dialog = figure ( ... 
 	'Color', [0.941 0.941 0.941], ...
-	'Position', [_xPos _yPos 1070 586], ...
+	'Position', [_xPos _yPos 1104 616], ...
 	'resize', 'off', ...
 	'windowstyle', 'normal', ...
 	'MenuBar', 'none');
@@ -42,7 +42,7 @@ function ret = show_help_dialog()
 	'FontName', 'Arial', ... 
 	'FontSize', 10, 'FontUnits', 'points', ... 
 	'FontWeight', 'normal', ... 
-	'Position', [5 16 1052 565]);
+	'Position', [5 5 1093 606]);
 
   help_dialog = struct( ...
       'figure', help_dialog, ...
@@ -50,8 +50,6 @@ function ret = show_help_dialog()
 
 
   dlg = struct(help_dialog);
-
-  set(help_dialog.figure, 'visible', 'on');
 
 %
 % The source code writed here will be executed when
@@ -67,6 +65,7 @@ help_img=imread(text);
 axes(help_dialog.img_help)
 imshow(help_img)
 
+  set(help_dialog.figure, 'visible', 'on');
   ret = help_dialog;
 end
 

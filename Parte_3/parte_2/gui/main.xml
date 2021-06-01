@@ -144,5 +144,5 @@ endif</uiControl>
 % As default, all events are deactivated, to activate must set the
 % propertie 'have callback' from the properties editor</uiControl>
     <uiControl class="cmbCtrl" BackgroundColor="[0.937 0.937 0.937]" FontAngle="normal" FontName="Yrsa" FontSize="11" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" Name="op_kernel" Position="[560 495 64 22]" String="a=b|a=/b" TooltipString=""/>
-    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Z003 [UKWN]" FontSize="11" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Kernel" Position="[570 470 47 18]" String="Kernel" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="italic" FontName="Z003 [UKWN]" FontSize="11" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Kernel" Position="[570 470 40 18]" String="Kernel" TooltipString=""/>
 </dialog>
